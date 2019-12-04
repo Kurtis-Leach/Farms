@@ -5,10 +5,6 @@ import '../assets/NavBar.css'
 export default () => {
     return(
         <Segment>
-            {/* <Message>
-            <Message.Header>NavBar</Message.Header>
-            <Loader active></Loader>
-        </Message> */}
          <div>
                 <Segment basic style={{ height: 200}}/>
                 <div style={{ position: 'fixed', width: '100%', top: 0, zIndex: 100000 }}>
