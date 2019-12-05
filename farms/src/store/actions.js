@@ -1,0 +1,1 @@
+export const FARMS_DATA_RECIEVED = 'FARMS_RECIEVED'
