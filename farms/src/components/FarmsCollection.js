@@ -1,27 +1,35 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import { Segment } from 'semantic-ui-react';
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from '../store/actions'
+
+ const farmsSelector = state => {
+     const {farms} = state
+     console.log (farms)
+     return farms
+ }
 
 export default () => {
-    // state = {
-    //     farms: []
+    let farms = []
+    // const style = {
+    //     display: 'flex',
+    //     flexWrap: 'wrap',
+    //     width: '1000px',
+    //     margin: 'auto',
+    //     justifyContent: 'center',
+    //     flexDirection: 'row',
     // }
-    const [farms ,setFarms] = useState ([])
-    const style = {
-        display: 'flex',
-        flexWrap: 'wrap',
-        width: '1000px',
-        margin: 'auto',
-        justifyContent: 'center',
-        flexDirection: 'row',
-    }
+
+    const dispatch = useDispatch()
+    farms = useSelector(farmsSelector)
 
     useEffect (()=>{
         fetch('http://localhost:3000/farms')
         .then((r)=> r.json())
         .then((currfarms)=>{
-            setFarms(currfarms)
+            dispatch({type: actions.FARMS_DATA_RECIEVED, farms: currfarms})
         })
-    },)
+    },[])
 
     // const [farms, setFarms] = useState([{
     //     "id": 1,
@@ -35,10 +43,10 @@ export default () => {
     //     "name": "Magnolia Ranch"
     // }])
 
-
     return (
-        <Segment style={style}>
-            {farms.map((f)=>(<Segment>{f.name}</Segment>))}
+        <Segment>
+            {/* {farms.map((f)=>(<Segment>{f.name}</Segment>))} */}
+            {console.log (farms[0], 'FAR#FEACDCVER')}
         </Segment>
     )
 }

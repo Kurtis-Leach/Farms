@@ -3,12 +3,15 @@ import { Segment } from 'semantic-ui-react'
 import NavBar from './components/NavBar'
 import FarmsCollection from './components/FarmsCollection';
 
+
 function App() {
   return (
-    <Segment>
-      <NavBar/>
-      <FarmsCollection/>
-    </Segment>
+
+      <Segment>
+        <NavBar/>
+        <FarmsCollection/>
+      </Segment>
+
   );
 }
 
