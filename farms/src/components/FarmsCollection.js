@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
-import { Segment } from 'semantic-ui-react';
+import { Segment, Loader } from 'semantic-ui-react';
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from '../store/actions'
+import FarmCard from './FarmCard';
 
  const farmsSelector = state => {
-     const {farms} = state
-     console.log (farms)
+     const {farms} = state.farms
      return farms
  }
 
@@ -27,26 +27,29 @@ export default () => {
         fetch('http://localhost:3000/farms')
         .then((r)=> r.json())
         .then((currfarms)=>{
+            console.log (currfarms, 'CURRR')
             dispatch({type: actions.FARMS_DATA_RECIEVED, farms: currfarms})
         })
     },[])
-
-    // const [farms, setFarms] = useState([{
-    //     "id": 1,
-    //     "name": "Oakridge Farms"
-    // },
-    // {
-    //     "id": 2,
-    //     "name": "Birch Wood Farms"
-    // },{
-    //     "id": 3,
-    //     "name": "Magnolia Ranch"
-    // }])
+  const farmss = [{
+        "id": 1,
+        "name": "Oakridge Farms"
+    },
+    {
+        "id": 2,
+        "name": "Birch Wood Farms"
+    },{
+        "id": 3,
+        "name": "Magnolia Ranch"
+    }]
+  
 
     return (
         <Segment>
-            {/* {farms.map((f)=>(<Segment>{f.name}</Segment>))} */}
-            {console.log (farms[0], 'FAR#FEACDCVER')}
+            {/* {farms ? farms.map((f)=>(<Segment>{f.name}</Segment>)) : <Loader>Loading</Loader>} */}
+            {console.log (farms)}
+            {farmss.map((f)=>(<FarmCard farm={f}></FarmCard>))}
+            
         </Segment>
     )
 }
